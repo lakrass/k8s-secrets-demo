@@ -1,0 +1,8 @@
+spec:
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-inject-status: "update"
+        vault.hashicorp.com/agent-inject-secret-app: "kv/data/api"
+        vault.hashicorp.com/role: "api"
