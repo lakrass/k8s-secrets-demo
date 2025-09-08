@@ -1,0 +1,21 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: demo-pod
+  namespace: csi
+spec:
+  serviceAccountName: demo-serviceaccount
+  containers:
+    - image: jweissig/app:0.0.1
+      name: webapp
+      volumeMounts:
+        - name: secret
+          mountPath: /mnt/secrets-store
+          readOnly: true
+  volumes:
+    - name: secret
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          secretProviderClass: demo-provider-class
