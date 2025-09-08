@@ -6,6 +6,7 @@ server:
   logLevel: debug
   ingress:
     enabled: true
-    hosts: 
+    ingressClassName: nginx
+    hosts:
       - host: localhost
         paths: ["/"]
