@@ -3,6 +3,8 @@ repositories:
   url: https://kubernetes.github.io/ingress-nginx
 - name: hashicorp
   url: https://helm.releases.hashicorp.com
+- name: external-secrets
+  url: https://charts.external-secrets.io
 
 releases:
 - name: ingress-nginx
@@ -17,3 +19,7 @@ releases:
   version: 0.30.1
   values:
   - ./values/vault.yml
+- name: eso
+  namespace: eso
+  chart: external-secrets/external-secrets
+  version: 0.19.2
