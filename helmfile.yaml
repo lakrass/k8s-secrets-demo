@@ -1,25 +1,38 @@
 repositories:
-- name: ingress-nginx
-  url: https://kubernetes.github.io/ingress-nginx
-- name: hashicorp
-  url: https://helm.releases.hashicorp.com
-- name: external-secrets
-  url: https://charts.external-secrets.io
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: hashicorp
+    url: https://helm.releases.hashicorp.com
+  - name: external-secrets
+    url: https://charts.external-secrets.io
+  - name: secrets-store-csi-driver
+    url: https://kubernetes-sigs.github.io/secrets-store-csi-driver/charts
 
 releases:
-- name: ingress-nginx
-  namespace: ingress-nginx
-  chart: ingress-nginx/ingress-nginx
-  version: 4.13.1
-  values:
-  - ./values/ingress-nginx.yaml
-- name: vault
-  namespace: vault
-  chart: hashicorp/vault
-  version: 0.30.1
-  values:
-  - ./values/vault.yml
-- name: eso
-  namespace: eso
-  chart: external-secrets/external-secrets
-  version: 0.19.2
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    version: 4.13.1
+    values:
+      - ./values/ingress-nginx.yml
+  - name: vault
+    namespace: vault
+    chart: hashicorp/vault
+    version: 0.30.1
+    values:
+      - ./values/vault.yml
+  - name: eso
+    namespace: eso
+    chart: external-secrets/external-secrets
+    version: 0.19.2
+  - name: secrets-store-csi-driver
+    namespace: csi
+    chart: secrets-store-csi-driver/secrets-store-csi-driver
+    version: 1.5.3
+    values:
+      - ./values/secrets-store-csi-driver.yml
+  - name: vault-csi-provider
+    namespace: csi
+    chart: hashicorp/vault
+    values:
+      - ./values/vault-csi-provider.yml
