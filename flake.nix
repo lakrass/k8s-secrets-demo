@@ -34,6 +34,7 @@
           packages = with pkgs; [
             kubectl
             vault
+            terraform
           ];
 
           buildInputs = [
