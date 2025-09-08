@@ -1,2 +1,10 @@
 injector:
   enabled: true
+server:
+  tag: "1.20.3"
+  logLevel: debug
+  ingress:
+    enabled: true
+    hosts: 
+      - host: localhost
+        paths: ["/"]
