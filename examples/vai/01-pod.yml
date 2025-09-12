@@ -1,0 +1,21 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: demo-pod
+  namespace: vai
+  annotations:
+    vault.hashicorp.com/agent-inject: "true"
+    vault.hashicorp.com/agent-inject-status: "update"
+    # can also be configured within the agent injector itself
+    vault.hashicorp.com/service: http://vault.vault.svc.cluster.local:8200
+    vault.hashicorp.com/role: "demo"
+    vault.hashicorp.com/agent-inject-secret-foo: "kv/data/demo"
+    vault.hashicorp.com/agent-inject-template-foo: |
+      {{- with secret "kv/data/demo" -}}
+      {{ .Data.data.foo }}
+      {{- end }}
+spec:
+  serviceAccountName: demo-serviceaccount
+  containers:
+    - name: webapp
+      image: jweissig/app:0.0.1
