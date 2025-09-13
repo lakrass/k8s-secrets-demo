@@ -34,10 +34,12 @@ releases:
   - name: vault-csi-provider
     namespace: csi
     chart: hashicorp/vault
+    version: 0.30.1
     values:
       - ./values/vault-csi-provider.yml
   - name: vault-agent-injector
     namespace: vai
     chart: hashicorp/vault
+    version: 0.30.1
     values:
       - ./values/vault-csi-provider.yml
