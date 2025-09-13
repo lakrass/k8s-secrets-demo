@@ -1,3 +1,20 @@
+# create clusterrolebinding for vault to use TokenReview API
+resource "kubernetes_cluster_role_binding" "vault_auth_delegator" {
+  metadata {
+    name = "vault-auth-delegator"
+  }
+  subject {
+    kind      = "ServiceAccount"
+    namespace = "vault"
+    name      = "vault"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "system:auth-delegator"
+  }
+}
+
 # enable the kubernetes auth method
 resource "vault_auth_backend" "kubernetes" {
   type = "kubernetes"
@@ -25,4 +42,3 @@ resource "vault_kubernetes_auth_backend_role" "ktk" {
   bound_service_account_namespaces = ["eso", "csi", "vai"]
   token_policies                   = [vault_policy.ktk.name]
 }
-
