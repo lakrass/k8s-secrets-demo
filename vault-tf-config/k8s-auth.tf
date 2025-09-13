@@ -39,6 +39,6 @@ resource "vault_kubernetes_auth_backend_role" "ktk" {
   backend                          = vault_auth_backend.kubernetes.type
   role_name                        = "demo"
   bound_service_account_names      = ["demo-serviceaccount"]
-  bound_service_account_namespaces = ["eso", "csi", "vai"]
+  bound_service_account_namespaces = ["eso", "csi", "vai", "vswh-workloads"]
   token_policies                   = [vault_policy.ktk.name]
 }

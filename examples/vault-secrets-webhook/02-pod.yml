@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: demo-pod
+  namespace: vswh-workloads
+  annotations:
+    vault.security.banzaicloud.io/vault-addr: http://vault.vault.svc.cluster.local:8200
+    vault.security.banzaicloud.io/vault-role: demo
+    vault.security.banzaicloud.io/vault-env-from-path: kv/data/demo
+spec:
+  serviceAccountName: demo-serviceaccount
+  containers:
+    - name: webapp
+      image: jweissig/app:0.0.1
+      command: ["sh", "-c", "env | grep foo; while true; do sleep 5000; done"]
