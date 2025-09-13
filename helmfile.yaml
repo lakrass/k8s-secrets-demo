@@ -21,7 +21,7 @@ releases:
     version: 0.30.1
     values:
       - ./values/vault.yml
-  - name: eso
+  - name: external-secrets-opeartor
     namespace: eso
     chart: external-secrets/external-secrets
     version: 0.19.2
