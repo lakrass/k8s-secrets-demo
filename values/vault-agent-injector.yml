@@ -2,3 +2,4 @@ server:
   enabled: false
 injector:
   enabled: true
+  logLevel: true
