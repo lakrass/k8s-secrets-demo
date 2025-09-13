@@ -1,4 +1,4 @@
-# CDS 2025 Demo
+# K8s Secrets from Vault Demo
 
 ## Prerequisites
 
