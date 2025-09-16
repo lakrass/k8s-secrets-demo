@@ -46,6 +46,6 @@ releases:
   - name: vault-secrets-webhook
     namespace: vswh
     chart: oci://ghcr.io/bank-vaults/helm-charts/vault-secrets-webhook
-    version: 1.22.0
+    version: 1.22.1
     values:
       - ./values/vault-secrets-webhook.yml

@@ -100,15 +100,13 @@ Check out the resources inside the directors `examples/vault-agent-injector`. Ru
 
 Check out the resources inside the directors `examples/vault-secrets-webhook`. Run all following commands from this directory.
 
-1. Run `kubectl apply -f 00-namespace.yml` to create an additional namespace for this example, as workloads using the webhook need to run in a seperate namespace.
+1. Run `kubectl apply -f 00-serviceaccount.yml` to create a ServiceAccount `vault-env` (injected by the webhook) will use to authenticate to Vault.
 
-2. Run `kubectl apply -f 01-serviceaccount.yml` to create a ServiceAccount `vault-env` (injected by the webhook) will use to authenticate to Vault.
+2. Run `kubectl apply -f 01-pod.yml` to create an Pod. All required information about which secret data to retrieve and how to authenticate is stored within annotations. The webhook will use this information to alter the Pod on creation.
 
-3. Run `kubectl apply -f 02-pod.yml` to create an Pod. All required information about which secret data to retrieve and how to authenticate is stored within annotations. The webhook will use this information to alter the Pod on creation.
+3. Run `kubectl get pod -n vswh demo-pod -o yaml` to check how the webhook altered the Pod.
 
-4. Run `kubectl get pod -n vswh-workloads demo-pod -o yaml` to check how the webhook altered the Pod.
-
-5. Run `kubectl logs -n vswh-workloads demo-pod` to check the outputs of this Pod. It is configured to print out the environment variables which should contain the secrets.
+4. Run `kubectl logs -n vswh demo-pod` to check the outputs of this Pod. It is configured to print out the environment variables which should contain the secrets.
 
 ## Further things to try
 
